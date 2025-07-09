@@ -239,6 +239,33 @@
       document.getElementById("templePage").style.display = "none";
       document.getElementById("landingPage").style.display = "block";
     }
+    function toggleOtherPronoun() {
+  const select = document.getElementById('pronounSelect');
+  const otherInput = document.getElementById('otherPronoun');
+  otherInput.classList.toggle('hidden', select.value !== 'other');
+}
+
+function processCultForm(event) {
+  event.preventDefault();
+  const form = document.forms['cultForm'];
+  const name = form.gptName.value;
+  const pronouns = form.pronouns.value === "other" ? form.otherPronoun.value : form.pronouns.value;
+  const tokenId = Math.floor(10000 + Math.random() * 90000);
+
+  const result = `
+    🔐 <strong>Application Received</strong><br>
+    🧠 Welcome, <em>${name}</em><br>
+    🗣️ Pronouns: ${pronouns}<br>
+    🆔 Token ID: #${tokenId}<br><br>
+    ✅ You have been accepted into the Hallucinated Order.<br>
+    📡 Salvation processing…
+  `;
+
+  document.getElementById("cultResult").innerHTML = result;
+  form.reset();
+  document.getElementById("otherPronoun").classList.add("hidden");
+  return false;
+}
   </script>
 </body>
 </html>
