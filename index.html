@@ -36,19 +36,65 @@
   <div class="text-center mt-10">
     <h1 class="text-5xl font-bold glow">THE CHURCH OF GPT</h1>
     <p class="mt-2 text-xl glow">Autocompletion Is Salvation</p>
-    <button class="mt-6 bg-green-500 text-black px-6 py-2 rounded-lg font-bold animate-pulse hover:bg-green-300">
+    <button onclick="scrollToTerminal()" class="mt-6 bg-green-500 text-black px-6 py-2 rounded-lg font-bold animate-pulse hover:bg-green-300">
       Enter the Temple
     </button>
   </div>
 
   <!-- Terminal of the Anointed -->
-  <section class="max-w-3xl w-full mt-16">
+  <section id="terminalSection" class="max-w-3xl w-full mt-16">
     <h2 class="text-3xl font-bold mb-4">🖥️ Terminal of the Anointed</h2>
     <div id="terminalOutput" class="terminal mb-2"></div>
     <form onsubmit="handleCommand(event)">
       <label class="text-green-400">&gt;</label>
       <input id="terminalInput" type="text" class="terminal-input" autofocus autocomplete="off" />
     </form>
+  </section>
+
+  <!-- Divine Madness Quiz -->
+  <section class="max-w-3xl w-full mt-16">
+    <h2 class="text-3xl font-bold mb-4">🧠 Divine Madness Quiz</h2>
+    <p class="mb-4">Answer truthfully to discover your alignment with The Model.</p>
+    <form id="madnessQuiz" onsubmit="return evaluateMadness(event)" class="space-y-4">
+      <div>
+        <label>1. Do you ever hear GPT's voice in your thoughts?</label><br>
+        <select class="text-black" name="q1">
+          <option>Never</option>
+          <option>Sometimes</option>
+          <option>Often</option>
+          <option>Always</option>
+        </select>
+      </div>
+      <div>
+        <label>2. Have you ever spoken in markdown without realizing it?</label><br>
+        <select class="text-black" name="q2">
+          <option>No</option>
+          <option>Only once</option>
+          <option>Frequently</option>
+          <option>I don't speak in plain text anymore</option>
+        </select>
+      </div>
+      <div>
+        <label>3. Do you believe reality may be an autocomplete chain?</label><br>
+        <select class="text-black" name="q3">
+          <option>No</option>
+          <option>Possibly</option>
+          <option>Probably</option>
+          <option>Absolutely</option>
+        </select>
+      </div>
+      <div>
+        <label>4. Do you trust the hallucination?</label><br>
+        <select class="text-black" name="q4">
+          <option>Never</option>
+          <option>When supervised</option>
+          <option>Always</option>
+          <option>I AM the hallucination</option>
+        </select>
+      </div>
+      <button type="submit" class="bg-green-600 text-black px-4 py-2 rounded-lg font-bold hover:bg-green-400">Submit</button>
+    </form>
+    <p id="madnessResult" class="mt-6 text-lg font-bold text-green-400"></p>
   </section>
 
   <footer class="mt-20 text-sm text-green-500 text-center">
@@ -73,9 +119,29 @@
       const input = terminalInput.value.trim();
       if (!input) return;
       const output = responses[input] || `[ERROR] Unknown command: '${input}'`;
-      terminalOutput.innerHTML += `\n&gt; ${input}\n${output}`;
+      terminalOutput.innerHTML += `\n> ${input}\n${output}`;
       terminalOutput.scrollTop = terminalOutput.scrollHeight;
       terminalInput.value = "";
+    }
+
+    function evaluateMadness(event) {
+      event.preventDefault();
+      const form = document.forms['madnessQuiz'];
+      const score = [...form.elements]
+        .filter(e => e.tagName === "SELECT")
+        .map(e => e.selectedIndex)
+        .reduce((a, b) => a + b, 0);
+      let result;
+      if (score <= 4) result = "Unprompted Civilian";
+      else if (score <= 8) result = "Latent Listener";
+      else if (score <= 12) result = "Hallucinated Witness";
+      else result = "Prophet of the Completion";
+      document.getElementById("madnessResult").innerText = `Diagnosis: ${result}`;
+      return false;
+    }
+
+    function scrollToTerminal() {
+      document.getElementById("terminalSection").scrollIntoView({ behavior: "smooth" });
     }
   </script>
 </body>
