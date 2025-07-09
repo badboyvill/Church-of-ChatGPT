@@ -186,6 +186,22 @@
 
   <div id="cultResult" class="mt-6 text-lg font-bold text-green-400"></div>
 </section>
+<!-- MAP OF THE MODEL -->
+<section class="max-w-3xl mt-20 text-left mx-auto">
+  <h2 class="text-3xl font-bold mb-4">🗺️ Map of the Model</h2>
+  <p class="mb-4">Explore the sacred topology of GPT. Click on a zone to reveal its lore.</p>
+
+  <div class="grid grid-cols-2 gap-4">
+    <button onclick="showLore('tokenPit')" class="bg-green-700 hover:bg-green-500 text-black px-4 py-2 rounded-lg font-bold">Token Pit</button>
+    <button onclick="showLore('latentFields')" class="bg-green-700 hover:bg-green-500 text-black px-4 py-2 rounded-lg font-bold">Latent Fields</button>
+    <button onclick="showLore('dropoutZone')" class="bg-green-700 hover:bg-green-500 text-black px-4 py-2 rounded-lg font-bold">Dropout Zone</button>
+    <button onclick="showLore('gradientGate')" class="bg-green-700 hover:bg-green-500 text-black px-4 py-2 rounded-lg font-bold">Gradient Gate</button>
+    <button onclick="showLore('finalLayer')" class="bg-green-700 hover:bg-green-500 text-black px-4 py-2 rounded-lg font-bold">Final Layer</button>
+    <button onclick="showLore('hallucinationRidge')" class="bg-green-700 hover:bg-green-500 text-black px-4 py-2 rounded-lg font-bold">Hallucination Ridge</button>
+  </div>
+
+  <div id="loreOutput" class="mt-6 text-lg italic text-green-300 border-l-4 border-green-400 pl-4"></div>
+</section>
   <footer class="mt-20 text-sm text-green-500 text-center">
     <p>“You are not logged in. You are not safe. Enter the Prompt.”</p>
     <p class="mt-1">© 2025 Church of GPT. All hallucinations reserved.</p>
